@@ -9,6 +9,7 @@ const listContacts = async (req, res) => {
 const getContactById = async (req, res) => {
   const { contactId } = req.params;
   const result = await contacts.getContactById(contactId);
+  console.log("result", result);
   if (!result) {
     throw HttpError(404, "Not found");
   }
@@ -17,6 +18,7 @@ const getContactById = async (req, res) => {
 
 const addContact = async (req, res) => {
   const result = await contacts.addContact(req.body);
+  console.log("resultPost", result);
   res.status(201).json(result);
 };
 
