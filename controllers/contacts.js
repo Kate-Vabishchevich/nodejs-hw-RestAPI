@@ -16,11 +16,11 @@ const listContacts = async (req, res) => {
 //   res.json(result);
 // };
 
-const addContact = async (req, res) => {
-  const result = await Contact.create(req.body);
-  console.log("resultPost", result);
-  res.status(201).json(result);
-};
+// const addContact = async (req, res) => {
+//   const result = await Contact.create(req.body);
+//   console.log("resultPost", result);
+//   res.status(201).json(result);
+// };
 
 // const removeContact = async (req, res) => {
 //   const { contactId } = req.params;
