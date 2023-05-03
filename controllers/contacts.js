@@ -9,7 +9,6 @@ const listContacts = async (req, res) => {
 const getContactById = async (req, res) => {
   const { contactId } = req.params;
   const result = await Contact.findById(contactId);
-  console.log("result", result);
   if (!result) {
     throw HttpError(404, "Not found");
   }
@@ -21,20 +20,12 @@ const addContact = async (req, res) => {
   res.status(201).json(result);
 };
 
-const removeContact = async (req, res) => {
-  const { contactId } = req.params;
-  const result = await Contact.findByIdAndRemove(contactId);
-  if (!result) {
-    throw HttpError(404, "Not found");
-  }
-  res.status(200).json({ message: "Contact deleted" });
-};
-
 const updateContact = async (req, res) => {
   const { contactId } = req.params;
   const result = await Contact.findByIdAndUpdate(contactId, req.body, {
     new: true,
   });
+
   if (!result) {
     throw HttpError(404, "Not found");
   }
@@ -50,6 +41,15 @@ const updateStatusContact = async (req, res) => {
     throw HttpError(404, "Missing field favorite");
   }
   res.json(result);
+};
+
+const removeContact = async (req, res) => {
+  const { contactId } = req.params;
+  const result = await Contact.findByIdAndRemove(contactId);
+  if (!result) {
+    throw HttpError(404, "Not found");
+  }
+  res.status(200).json({ message: "Contact deleted" });
 };
 
 module.exports = {
